@@ -1,6 +1,6 @@
 %define		_subver	R4
-Summary:	AutoScan is a utility for network exploration
-Summary(pl):	AutoScan jest narzêdziem do odkrywania sieci
+Summary:	AutoScan - a utility for network exploration
+Summary(pl):	AutoScan - narzêdzie do odkrywania sieci
 Name:		AutoScan
 Version:	beta_0.92
 Release:	0.%{_subver}.1
@@ -9,8 +9,12 @@ Group:		Networking
 Source0:	http://autoscan.free.fr/%{name}-%{version}-%{_subver}.tar.gz
 # Source0-md5:	57697c92f7624117c2cdb75bda9d1705
 URL:		http://autoscan.free.fr/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	libgtkhtml-devel
 BuildRequires:	libsmbclient-devel
+Requires:	kdelibs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,7 +31,6 @@ portów.
 %setup -q
 
 %build
-
 cd Sources/Autoscan
 rm -rf autom4te.cache
 %{__gettextize}
@@ -54,7 +57,6 @@ cd ../../../
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/{apps,pixmaps}}
 
 install Sources/Autoscan/src/autoscan $RPM_BUILD_ROOT%{_bindir}/AutoScan
