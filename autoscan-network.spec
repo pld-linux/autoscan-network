@@ -23,7 +23,7 @@ connected to the network. A list of ports preset is scanned for each
 equipment.
 
 %description -l pl
-Celem tego programu jest wskazanie wszystkich urzadzeñ pod³±czonych do
+Celem tego programu jest wskazanie wszystkich urz±dzeñ pod³±czonych do
 sieci. Dla ka¿dego urz±dzenia przedstawiana jest lista otwartych
 portów.
 
