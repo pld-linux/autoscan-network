@@ -10,6 +10,7 @@ Source0:	http://autoscan.free.fr/%{name}-%{version}-%{_subver}.tar.gz
 # Source0-md5:	57697c92f7624117c2cdb75bda9d1705
 URL:		http://autoscan.free.fr/
 BuildRequires:	libgtkhtml-devel
+BuildRequires:	libsmbclient-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
