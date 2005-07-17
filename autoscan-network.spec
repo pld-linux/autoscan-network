@@ -1,13 +1,13 @@
-%define		_subver	R0
+%define		_subver	R1
 Summary:	AutoScan - a utility for network exploration
 Summary(pl):	AutoScan - narzêdzie do odkrywania sieci
 Name:		AutoScan
-Version:	beta_0.93
+Version:	0.95
 Release:	0.%{_subver}.1
 License:	GPL
 Group:		Networking
 Source0:	http://autoscan.free.fr/%{name}-%{version}-%{_subver}.tar.gz
-# Source0-md5:	e9532a7af284a37cd312e72cbfa35042
+# Source0-md5:	ccf781b778cc4da781f2a7b26bc49e0a
 URL:		http://autoscan.free.fr/
 BuildRequires:	autoconf
 BuildRequires:	automake
