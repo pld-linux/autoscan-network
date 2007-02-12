@@ -1,6 +1,6 @@
 %define		_subver	R1
 Summary:	AutoScan - a utility for network exploration
-Summary(pl.UTF-8):   AutoScan - narzędzie do odkrywania sieci
+Summary(pl.UTF-8):	AutoScan - narzędzie do odkrywania sieci
 Name:		AutoScan
 Version:	0.95
 Release:	0.%{_subver}.1
