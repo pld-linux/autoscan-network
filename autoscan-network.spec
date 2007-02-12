@@ -1,6 +1,6 @@
 %define		_subver	R1
 Summary:	AutoScan - a utility for network exploration
-Summary(pl):	AutoScan - narzêdzie do odkrywania sieci
+Summary(pl.UTF-8):   AutoScan - narzÄ™dzie do odkrywania sieci
 Name:		AutoScan
 Version:	0.95
 Release:	0.%{_subver}.1
@@ -22,10 +22,10 @@ The objective of the program is to post the list of all equipment
 connected to the network. A list of ports preset is scanned for each
 equipment.
 
-%description -l pl
-Celem tego programu jest wskazanie wszystkich urz±dzeñ pod³±czonych do
-sieci. Dla ka¿dego urz±dzenia przedstawiana jest lista otwartych
-portów.
+%description -l pl.UTF-8
+Celem tego programu jest wskazanie wszystkich urzÄ…dzeÅ„ podÅ‚Ä…czonych do
+sieci. Dla kaÅ¼dego urzÄ…dzenia przedstawiana jest lista otwartych
+portÃ³w.
 
 %prep
 %setup -q
