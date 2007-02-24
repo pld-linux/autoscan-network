@@ -2,18 +2,26 @@
 Summary:	AutoScan - a utility for network exploration
 Summary(pl.UTF-8):	AutoScan - narzędzie do odkrywania sieci
 Name:		AutoScan
-Version:	0.95
+Version:	0.99
 Release:	0.%{_subver}.1
 License:	GPL
 Group:		Networking
-Source0:	http://autoscan.free.fr/%{name}-%{version}-%{_subver}.tar.gz
-# Source0-md5:	ccf781b778cc4da781f2a7b26bc49e0a
+Source0:	http://autoscan.free.fr/Download/%{name}.%{version}_%{_subver}.tar.gz
+# Source0-md5:	69aefe0da6ca19573e65245154296321
 URL:		http://autoscan.free.fr/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libgtkhtml-devel
 BuildRequires:	libsmbclient-devel
+BuildRequires:	net-snmp-devel >= 5.0
+BuildRequires:	vte-devel >= 0.11.12
+BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	gnome-vfs2-devel >= 2.8.4
+BuildRequires:	gnome-keyring-devel >= 0.4.2
+BuildRequires:	libbonoboui-devel >= 2.8.1
+BuildRequires:	pango-devel >= 1.8.1
+BuildRequires:	libgnomeui-devel >= 2.8.1
 Requires:	kdelibs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -28,48 +36,30 @@ sieci. Dla każdego urządzenia przedstawiana jest lista otwartych
 portów.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}_%{_subver}
 
 %build
-cd Sources/Autoscan
-rm -rf autom4te.cache
-%{__gettextize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
 %configure
-cd src
 %{__make}
-cd ../../../
-
-cd Sources/AutoScan_d
-rm -rf autom4te.cache
-%{__gettextize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure
-cd src
-%{__make}
-cd ../../../
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/{apps,pixmaps}}
+install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT{%{_datadir}/{apps,pixmaps,applications,sounds,icons}}
 
-install Sources/Autoscan/src/autoscan $RPM_BUILD_ROOT%{_bindir}/AutoScan
-install Sources/AutoScan_d/src/autoscan_d $RPM_BUILD_ROOT%{_bindir}
-cp -R Data/apps/AutoScan $RPM_BUILD_ROOT%{_datadir}/apps
-cp -R Data/pixmaps/AutoScan $RPM_BUILD_ROOT%{_datadir}/pixmaps
+install bin/AutoScan_Network $RPM_BUILD_ROOT%{_bindir}
+install bin/AutoScan_Agent $RPM_BUILD_ROOT%{_bindir}
+cp -R usr/* $RPM_BUILD_ROOT/usr/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README Data/doc/AutoScan
+%doc README AUTHORS
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/apps/%{name}
 %{_datadir}/pixmaps/%{name}
+%{_datadir}/sounds/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/%{name}.png
