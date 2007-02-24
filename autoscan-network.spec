@@ -12,6 +12,7 @@ URL:		http://autoscan.free.fr/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	libao-devel >= 0.8.5
 BuildRequires:	libgtkhtml-devel
 BuildRequires:	libsmbclient-devel
 BuildRequires:	net-snmp-devel >= 5.0
