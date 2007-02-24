@@ -53,7 +53,7 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/{apps,pixmaps,applications,sounds,icons}}
 install bin/AutoScan_Network $RPM_BUILD_ROOT%{_bindir}
 install bin/AutoScan_Agent $RPM_BUILD_ROOT%{_bindir}
 cp -R usr/* $RPM_BUILD_ROOT/usr/
-rm -rf $RPM_BUILD_ROOT/usr/share/doc/AutoScan/copyright
+rm -f $RPM_BUILD_ROOT/usr/share/doc/AutoScan/copyright
 
 %clean
 rm -rf $RPM_BUILD_ROOT
