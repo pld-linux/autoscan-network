@@ -1,0 +1,33 @@
+--- autoscan-network-1.12/configure.orig	2008-01-04 00:37:11.000000000 +0000
++++ autoscan-network-1.12/configure	2008-02-05 00:37:36.000000000 +0000
+@@ -1203,7 +1203,7 @@
+ 
+ if [ $BUILD_GUI == "yes" ] && [ $SYSTEM != "Gentoo" ]; then
+ 	echo "	@echo '^[[01;34m*** Gconf config...^[[00m'" >> Makefile
+-	echo "	export GCONF_CONFIG_SOURCE=\$(GCONF);gconftool-2 --makefile-install-rule /usr/share/apps/autoscan-network/autoscan-network.schemas &>/dev/null" >> Makefile
++	echo "#export GCONF_CONFIG_SOURCE=\$(GCONF);gconftool-2 --makefile-install-rule /usr/share/apps/autoscan-network/autoscan-network.schemas &>/dev/null" >> Makefile
+ fi
+ 
+ echo "	@echo '[01;34m*** Installing executable...[00m'" >> Makefile
+@@ -1217,8 +1217,8 @@
+ 	fi
+ 	echo "	\$(SHTOOL) mkdir -f -p -m 755 \$(DESTDIR)/usr/sbin" >> Makefile
+ 	echo "	\$(SHTOOL) mkdir -f -p -m 755 \$(DESTDIR)/etc/init.d" >> Makefile
+-	echo "	\$(INSTALL) -c -m 755 -o root -g root bin/autoscan-network-daemon \$(DESTDIR)/usr/sbin/" >> Makefile
+-	echo "	\$(INSTALL) -c -m 755 -o root -g root $DAEMON" >> Makefile
++	echo "	\$(INSTALL) -c -m 755 bin/autoscan-network-daemon \$(DESTDIR)/usr/sbin/" >> Makefile
++	#echo "	\$(INSTALL) -c -m 755 $DAEMON" >> Makefile
+ fi
+ echo "" >> Makefile
+ 
+@@ -1224,8 +1224,8 @@
+ 
+ echo "	@echo '[01;34m*** Installing Script...[00m'" >> Makefile
+ if [ $BUILD_AGENT == "yes" ] && [ $SYSTEM != "Gentoo" ]; then
+-	echo "	$INSTALL_DAEMON" >> Makefile
+-	echo "	/etc/init.d/autoscan-network start" >> Makefile
++	echo "#	$INSTALL_DAEMON" >> Makefile
++	echo "#	/etc/init.d/autoscan-network start" >> Makefile
+ fi
+ echo "" >> Makefile
+ 
