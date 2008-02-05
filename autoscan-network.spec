@@ -1,15 +1,13 @@
-#	installed but not packaged:
-#		/usr/lib/menu/AutoScan
-%define		_subver	R1
 Summary:	AutoScan - a utility for network exploration
 Summary(pl.UTF-8):	AutoScan - narzędzie do odkrywania sieci
-Name:		AutoScan
-Version:	0.99
-Release:	0.%{_subver}.1
+Name:		autoscan-network
+Version:	1.12
+Release:	0.1
 License:	GPL
 Group:		Networking
-Source0:	http://autoscan.free.fr/Download/%{name}.%{version}_%{_subver}.tar.gz
-# Source0-md5:	69aefe0da6ca19573e65245154296321
+Source0:	http://autoscan.fr/download/%{name}-%{version}.tar.gz
+# Source0-md5:	59c94af105807738c379586447755e20
+Patch0:		%{name}-install.patch
 URL:		http://autoscan.free.fr/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -29,17 +27,23 @@ Requires:	kdelibs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The objective of the program is to post the list of all equipment
-connected to the network. A list of ports preset is scanned for each
-equipment.
+AutoScan Network is an application designed to explore and to manage
+your network.
 
-%description -l pl.UTF-8
-Celem tego programu jest wskazanie wszystkich urządzeń podłączonych do
-sieci. Dla każdego urządzenia przedstawiana jest lista otwartych
-portów.
+ Some features:
+• Automatic network discovery
+• Entire subnets can be scanned simultaneously without human
+  intervention
+• Addition time-reality of the new machines put on the network
+• Detection of the OS, brand and model known (Possibility to add an
+  unknown equipment in the database)
+• Ability to save the network state
+• A Samba share browser
+• A Nessus client ...
 
 %prep
-%setup -q -n %{name}-%{version}_%{_subver}
+%setup -q
+%patch0 -p1
 
 %build
 %configure
@@ -47,20 +51,16 @@ portów.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT{%{_datadir}/{apps,pixmaps,applications,sounds,icons}}
 
-install bin/AutoScan_Network $RPM_BUILD_ROOT%{_bindir}
-install bin/AutoScan_Agent $RPM_BUILD_ROOT%{_bindir}
-cp -R usr/* $RPM_BUILD_ROOT/usr/
-rm -f $RPM_BUILD_ROOT/usr/share/doc/AutoScan/copyright
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README AUTHORS
+%doc AUTHORS
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/apps/%{name}
 %{_datadir}/pixmaps/%{name}
