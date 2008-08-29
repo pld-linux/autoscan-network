@@ -4,26 +4,33 @@ Name:		autoscan-network
 Version:	1.12
 Release:	0.1
 License:	GPL
-Group:		X11/Applications/Networking
+Group:		Networking
 Source0:	http://autoscan.fr/download/%{name}-%{version}.tar.gz
 # Source0-md5:	59c94af105807738c379586447755e20
 Patch0:		%{name}-install.patch
 URL:		http://autoscan.free.fr/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	elfutils-devel
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 1:2.6.3
 BuildRequires:	gnome-keyring-devel >= 0.4.2
 BuildRequires:	gnome-vfs2-devel >= 2.8.4
+BuildRequires:	gtk+2-devel >= 2:2.6.0
+# disabled in configure
+#BuildRequires:	gtk-vnc-devel >= 0.2.0
 BuildRequires:	libao-devel >= 0.8.5
 BuildRequires:	libbonoboui-devel >= 2.8.1
 BuildRequires:	libgnomeui-devel >= 2.8.1
 BuildRequires:	libgtkhtml-devel
 BuildRequires:	libsmbclient-devel
+BuildRequires:	libvorbis-devel >= 1:1.1.0
+BuildRequires:	libxml2-devel
 BuildRequires:	net-snmp-devel >= 5.0
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7a
 BuildRequires:	pango-devel >= 1.8.1
+BuildRequires:	pkgconfig
 BuildRequires:	vte-devel >= 0.11.12
-Requires:	kdelibs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,8 +67,9 @@ Wybrane cechy:
 %patch0 -p1
 
 %build
-%configure
-%{__make}
+bash configure
+%{__make} \
+	CC='%{__cc} %{rpmcflags} $(OPTIONS)'
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -69,15 +77,18 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+mv -f $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png \
+	$RPM_BUILD_ROOT%{_pixmapsdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/autoscan-network
+%attr(755,root,root) %{_sbindir}/autoscan-network-daemon
 %{_datadir}/apps/%{name}
-%{_datadir}/pixmaps/%{name}
 %{_datadir}/sounds/%{name}
 %{_desktopdir}/%{name}.desktop
-%{_datadir}/icons/%{name}.png
+%{_pixmapsdir}/%{name}.png
+%{_pixmapsdir}/%{name}
