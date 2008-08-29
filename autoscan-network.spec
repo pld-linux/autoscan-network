@@ -3,8 +3,8 @@ Summary(pl.UTF-8):	AutoScan - narzędzie do odkrywania sieci
 Name:		autoscan-network
 Version:	1.12
 Release:	0.1
-License:	GPL
-Group:		Networking
+License:	GPL v2
+Group:		X11/Applications/Networking
 Source0:	http://autoscan.fr/download/%{name}-%{version}.tar.gz
 # Source0-md5:	59c94af105807738c379586447755e20
 Patch0:		%{name}-install.patch
