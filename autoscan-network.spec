@@ -12,7 +12,7 @@ URL:		http://autoscan.free.fr/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	elfutils-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.6.3
 BuildRequires:	gnome-keyring-devel >= 0.4.2
 BuildRequires:	gnome-vfs2-devel >= 2.8.4
